@@ -1,0 +1,8 @@
+# pnpm 10+ 把构建脚本白名单挪到了这里，package.json 里的 pnpm 字段不再被读取。
+# esbuild 的 postinstall 要下载对应平台的二进制；不放行的话
+# `pnpm install --frozen-lockfile` 会以 ERR_PNPM_IGNORED_BUILDS 退出，Vercel 直接构建失败。
+# packages 兼容本机 pnpm 9：无此字段会报 packages field missing or empty
+packages:
+  - '.'
+allowBuilds:
+  esbuild: true
